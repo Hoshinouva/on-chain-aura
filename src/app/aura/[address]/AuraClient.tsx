@@ -9,7 +9,15 @@ export default function AuraClient({ aura }: { aura: any }) {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => setMounted(true), []);
+  // Trigger resize event after mount to force Three.js canvas to re-calculate bounds
+  // This solves the "off-center until window resize" bug on initial render
+  useEffect(() => {
+    setMounted(true);
+    const timer = setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   if (!mounted) return null;
 
@@ -58,10 +66,9 @@ export default function AuraClient({ aura }: { aura: any }) {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 2, ease: "easeOut" }}
-        className="absolute inset-0 z-0 flex items-center justify-center"
+        className="fixed inset-0 z-0 flex items-center justify-center pointer-events-none"
       >
-        {/* Constrain canvas width so it doesn't break flex layout */}
-        <div className="w-full max-w-[800px] h-full">
+        <div className="w-[100vw] h-[100vh]">
           <Canvas camera={{ position: [0, 0, 4.5], fov: 45 }} dpr={[1, 1.5]}>
             <ambientLight intensity={0.5} />
             <Suspense fallback={null}>
