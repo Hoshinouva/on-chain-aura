@@ -10,10 +10,10 @@ interface Props {
 
 // Generate X / OpenGraph Meta Tags based on the wallet
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const address = await params.address;
+  const address = params.address;
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://onchainaura.xyz'; // fallback for local
 
-  if (!address.startsWith('0x')) return { title: 'Invalid Wallet' };
+  if (!address || !address.startsWith('0x')) return { title: 'Invalid Wallet' };
 
   try {
     const rawStats = await fetchWalletData(address);
@@ -46,7 +46,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 // Server Component handles the fetch
 export default async function AuraPage({ params }: Props) {
-  const address = await params.address;
+  const address = params.address;
+  
+  if (!address || !address.startsWith('0x')) {
+    return <div className="min-h-screen bg-black flex items-center justify-center text-white font-mono">Invalid Wallet Address</div>;
+  }
+
   const rawStats = await fetchWalletData(address);
   const aura = generateAura(address, rawStats.ageInDays, rawStats.txCount, rawStats.chainsExplored);
 
