@@ -69,7 +69,7 @@ export default function AuraClient({ aura }: { aura: any }) {
       </motion.div>
 
       {/* UI Overlay */}
-      <div className="relative z-10 max-w-[520px] w-full p-4 md:p-8 flex flex-col items-center min-h-screen justify-center">
+      <div className="relative z-10 max-w-[520px] w-full p-4 md:p-8 flex flex-col items-center justify-center py-12">
         
         {/* The Glass Container */}
         <motion.div 
