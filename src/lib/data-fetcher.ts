@@ -14,9 +14,11 @@ const COVALENT_CHAINS = ['eth-mainnet', 'base-mainnet', 'arbitrum-mainnet', 'opt
 
 // Deterministic mock generator as the ultimate fallback
 function getDeterministicMock(address: string) {
-  const isOld = address.toLowerCase().includes('a');
-  const isHighVolume = address.toLowerCase().includes('0x1');
-  const isExplorer = address.toLowerCase().includes('b') || address.toLowerCase().includes('c');
+  // Safe lowercasing
+  const safeAddress = address ? String(address).toLowerCase() : '';
+  const isOld = safeAddress.includes('a');
+  const isHighVolume = safeAddress.includes('0x1');
+  const isExplorer = safeAddress.includes('b') || safeAddress.includes('c');
 
   // We don't sleep here; the fallback should be instant if the primary fails
   return {
@@ -46,7 +48,7 @@ export async function fetchWalletData(address: string) {
       const timeoutId = setTimeout(() => controller.abort(), 4000); // 4s timeout
 
       try {
-        const res = await fetch(url, { cache: 'force-cache', signal: controller.signal });
+        const res = await fetch(url, { next: { revalidate: 3600 }, signal: controller.signal } as RequestInit);
         clearTimeout(timeoutId);
         
         if (!res.ok) {
