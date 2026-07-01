@@ -4,15 +4,14 @@ import { fetchWalletData } from '@/lib/data-fetcher';
 import { generateAura } from '@/lib/aura-engine';
 import AuraClient from './AuraClient';
 
-// Next.js 14 compatible params interface
 interface Props {
-  params: { address?: string };
+  params: Promise<{ address: string }>;
 }
 
-// Generate X / OpenGraph Meta Tags based on the wallet
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const address = params?.address || '';
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://onchainaura.xyz'; // fallback for local
+  const p = await params;
+  const address = p?.address || '';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://onchainaura.xyz'; 
 
   if (!address || typeof address !== 'string' || !address.startsWith('0x')) return { title: 'Invalid Wallet' };
 
@@ -22,7 +21,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     const title = `${aura.colors.name} | On-Chain Aura`;
     const description = `Archetype: ${aura.archetype} • Spirit: ${aura.spiritAnimal} • Energy: ${aura.energyLevel}%`;
-    // Point to the OG API route we just built
     const imageUrl = `${baseUrl}/api/og?address=${address}`;
 
     return {
@@ -45,9 +43,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-// Server Component handles the fetch
 export default async function AuraPage({ params }: Props) {
-  const address = params?.address || '';
+  const p = await params;
+  const address = p?.address || '';
   
   if (!address || typeof address !== 'string' || !address.startsWith('0x')) {
     return <div className="min-h-screen bg-black flex items-center justify-center text-white font-mono">Invalid Wallet Address</div>;
