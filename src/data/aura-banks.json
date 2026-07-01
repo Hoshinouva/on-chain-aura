@@ -1,0 +1,49 @@
+{
+  "archetypes": {
+    "new": {
+      "id": "restless_degen",
+      "name": "The Restless Degen",
+      "lore": "You move quickly, trust intuition, and rarely stay in one ecosystem for long. Chaos is your comfort zone."
+    },
+    "mid": {
+      "id": "yield_nomad",
+      "name": "Yield Nomad",
+      "lore": "You traverse decentralized wastelands seeking yield oases. You adapt, survive, and leave no trace."
+    },
+    "old": {
+      "id": "chain_elder",
+      "name": "Chain Elder",
+      "lore": "You stood in the digital rain when blocks were slow and gas was cheap. You are a monument to survival."
+    }
+  },
+  "animals": [
+    "Moon Wolf", "Pixel Dragon", "Multichain Fox", "Cosmic Raven", 
+    "Phantom Whale", "Solar Serpent", "Chain Lynx", "Ether Owl", 
+    "Void Tiger", "Nebula Shark", "Quantum Bear", "Astral Bull", 
+    "Cyber Moth", "Neon Toad", "Glitch Scarab", "Plasma Hound", 
+    "Oracle Sphinx", "Ghost Mantis", "Genesis Ape", "Obsidian Tortoise"
+  ],
+  "destinies": {
+    "restless_degen": [
+      "You will chase a green candle into the abyss. Do not blink.",
+      "Airdrops evade you, but your meme timing is touched by the divine.",
+      "Your next impulsive bridge will either make you a legend or a cautionary tale.",
+      "The charts speak to you, but they are currently lying.",
+      "A forgotten wallet holds your salvation. Stop making new ones."
+    ],
+    "yield_nomad": [
+      "You wander from chain to chain. Soon, the liquidity will finally follow you.",
+      "A protocol you forgot about will resurrect. Be ready to claim.",
+      "Stop optimizing for pennies. A paradigm shift requires empty hands.",
+      "You seek safety in stables, but the cosmos demands leverage.",
+      "Your loyalty to networks is weak. This is your greatest strength."
+    ],
+    "chain_elder": [
+      "You have seen empires fall. Do not let heavy bags anchor your soul.",
+      "Patience is a virtue, but you border on rigor mortis. Move something.",
+      "Ghosts of bear markets past haunt your bids. Forgive yourself.",
+      "You hold ancient tokens like relics. One is about to awaken.",
+      "Wisdom is your armor, but nostalgia is your poison. Look forward."
+    ]
+  }
+}
