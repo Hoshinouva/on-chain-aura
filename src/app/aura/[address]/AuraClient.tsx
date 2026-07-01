@@ -58,7 +58,7 @@ export default function AuraClient({ aura }: { aura: any }) {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 2, ease: "easeOut" }}
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 flex items-center justify-center"
       >
         <Canvas camera={{ position: [0, 0, 4.5], fov: 45 }} dpr={[1, 1.5]}>
           <ambientLight intensity={0.5} />
