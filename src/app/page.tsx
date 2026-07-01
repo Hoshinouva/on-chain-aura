@@ -2,7 +2,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import OrbScene from '@/components/OrbScene';
+ 
 export default function Home() {
   const [address, setAddress] = useState('');
   const [error, setError] = useState('');
@@ -43,16 +44,45 @@ export default function Home() {
  
     return (
     <div className="min-h-screen bg-[#05070B] text-white flex flex-col items-center justify-center p-4 relative overflow-hidden">
-       
-      {/* Magical Background Orbs */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/[0.02] rounded-full blur-[100px] pointer-events-none mix-blend-screen" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-white/[0.04] rounded-full blur-[60px] pointer-events-none animate-pulse" style={{ animationDuration: '4s' }} />
+        
+      {/* 3D Center Object */}
+      <OrbScene />
+  
+      {/* Left Stats Layer */}
+      <div className="hidden lg:flex absolute left-12 top-1/2 -translate-y-1/2 flex-col space-y-12 z-10 pointer-events-none">
+        <div>
+          <p className="text-3xl font-sans mb-1">2.4M+</p>
+          <p className="text-xs font-mono text-gray-500 tracking-widest uppercase">Wallets Read</p>
+          <div className="h-[1px] w-12 bg-white/20 mt-4"></div>
+        </div>
+        <div>
+          <p className="text-3xl font-sans mb-1">99.9%</p>
+          <p className="text-xs font-mono text-gray-500 tracking-widest uppercase">Aura Accuracy</p>
+          <div className="h-[1px] w-12 bg-white/20 mt-4"></div>
+        </div>
+      </div>
+ 
+      {/* Right Steps Layer */}
+      <div className="hidden lg:flex absolute right-12 top-1/2 -translate-y-1/2 flex-col space-y-12 z-10 text-right pointer-events-none">
+        <div>
+          <p className="text-sm font-sans mb-1 text-gray-300">Connect / 01</p>
+          <p className="text-xs font-mono text-gray-500 tracking-widest uppercase">Input Wallet</p>
+        </div>
+        <div>
+          <p className="text-sm font-sans mb-1 text-gray-300">Read / 02</p>
+          <p className="text-xs font-mono text-gray-500 tracking-widest uppercase">Scan Chains</p>
+        </div>
+        <div>
+          <p className="text-sm font-sans mb-1 text-gray-300">Reveal / 03</p>
+          <p className="text-xs font-mono text-gray-500 tracking-widest uppercase">Discover Aura</p>
+        </div>
+      </div>
  
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-md w-full space-y-16 relative z-10"
+        className="max-w-md w-full space-y-16 relative z-10 mt-32 lg:mt-64"
       >
         <div className="text-center space-y-4">
           <h1 className="text-6xl md:text-7xl font-sans font-bold tracking-tighter leading-none bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50 pb-2">
