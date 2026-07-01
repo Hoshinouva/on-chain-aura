@@ -16,7 +16,7 @@ export default function AuraClient({ aura }: { aura: any }) {
   // The Void State
   if (aura.isVoid) {
     return (
-      <div className="min-h-screen bg-[#020202] text-white flex flex-col items-center justify-center p-4 relative overflow-hidden">
+      <div className="h-screen w-full bg-[#020202] text-white flex flex-col items-center justify-center p-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-noise opacity-30 mix-blend-overlay pointer-events-none"></div>
         <motion.div 
           initial={{ opacity: 0, filter: 'blur(20px)' }}
@@ -47,7 +47,7 @@ export default function AuraClient({ aura }: { aura: any }) {
 
   return (
     <div 
-      className="min-h-screen text-white flex flex-col items-center justify-center relative overflow-hidden transition-colors duration-[3000ms]"
+      className="h-screen w-full text-white flex items-center justify-center relative overflow-hidden transition-colors duration-[3000ms]"
       style={{ backgroundColor: aura.colors.accent }}
     >
       {/* Texture Overlay */}
@@ -60,16 +60,19 @@ export default function AuraClient({ aura }: { aura: any }) {
         transition={{ duration: 2, ease: "easeOut" }}
         className="absolute inset-0 z-0 flex items-center justify-center"
       >
-        <Canvas camera={{ position: [0, 0, 4.5], fov: 45 }} dpr={[1, 1.5]}>
-          <ambientLight intensity={0.5} />
-          <Suspense fallback={null}>
-            <AuraOrb profile={aura} />
-          </Suspense>
-        </Canvas>
+        {/* Constrain canvas width so it doesn't break flex layout */}
+        <div className="w-full max-w-[800px] h-full">
+          <Canvas camera={{ position: [0, 0, 4.5], fov: 45 }} dpr={[1, 1.5]}>
+            <ambientLight intensity={0.5} />
+            <Suspense fallback={null}>
+              <AuraOrb profile={aura} />
+            </Suspense>
+          </Canvas>
+        </div>
       </motion.div>
 
       {/* UI Overlay */}
-      <div className="relative z-10 max-w-[520px] w-full p-4 md:p-8 flex flex-col items-center justify-center py-12">
+      <div className="relative z-10 max-w-[520px] w-full p-4 md:p-8 flex flex-col items-center">
         
         {/* The Glass Container */}
         <motion.div 
@@ -110,7 +113,7 @@ export default function AuraClient({ aura }: { aura: any }) {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1.8, duration: 1.5, ease: "easeOut" }}
-            className="text-4xl md:text-6xl font-serif tracking-tight mb-8" 
+            className="text-4xl md:text-5xl font-serif tracking-tight mb-8" 
             style={{ 
               color: '#fff', 
               textShadow: `0 0 40px ${aura.colors.bloom}, 0 0 80px ${aura.colors.core}`,
@@ -171,7 +174,7 @@ export default function AuraClient({ aura }: { aura: any }) {
           animate={{ opacity: 1 }}
           transition={{ delay: 4.5, duration: 1 }}
           onClick={() => router.push('/')}
-          className="mt-12 py-4 px-8 rounded-full bg-black/20 hover:bg-white/10 border border-white/10 text-[10px] text-white/50 hover:text-white transition-all backdrop-blur-md font-mono tracking-[0.2em] uppercase"
+          className="mt-8 py-4 px-8 rounded-full bg-black/20 hover:bg-white/10 border border-white/10 text-[10px] text-white/50 hover:text-white transition-all backdrop-blur-md font-mono tracking-[0.2em] uppercase"
         >
           Read another wallet
         </motion.button>
