@@ -39,16 +39,28 @@ export default function Home() {
       clearInterval(interval);
       router.push(`/aura/${trimmed}`);
     }, 3500);
-  };
-
-  return (
-    <div className="min-h-screen bg-[#05070B] text-white flex flex-col items-center justify-center p-4">
-      <div className="max-w-md w-full space-y-12">
-        <div className="text-center">
-          <h1 className="text-4xl md:text-5xl font-sans mb-3 tracking-tight">On-Chain Aura</h1>
-          <p className="text-gray-300 font-mono text-sm tracking-wide">What kind of on-chain being are you?</p>
+    };
+ 
+    return (
+    <div className="min-h-screen bg-[#05070B] text-white flex flex-col items-center justify-center p-4 relative overflow-hidden">
+       
+      {/* Magical Background Orbs */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/[0.02] rounded-full blur-[100px] pointer-events-none mix-blend-screen" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-white/[0.04] rounded-full blur-[60px] pointer-events-none animate-pulse" style={{ animationDuration: '4s' }} />
+ 
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-md w-full space-y-16 relative z-10"
+      >
+        <div className="text-center space-y-4">
+          <h1 className="text-6xl md:text-7xl font-sans font-bold tracking-tighter leading-none bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50 pb-2">
+            On-Chain<br />Aura
+          </h1>
+          <p className="text-gray-400 font-mono text-xs md:text-sm tracking-widest uppercase">What kind of on-chain being are you?</p>
         </div>
-        
+         
         {loading ? (
           <div className="text-center space-y-6 h-32 flex flex-col items-center justify-center">
             <div className="w-12 h-12 border border-white/20 border-t-white/80 rounded-full animate-spin mx-auto mb-4"></div>
@@ -76,21 +88,24 @@ export default function Home() {
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleReveal()}
-                className="w-full bg-white/5 border border-white/10 rounded-xl p-5 font-mono text-sm focus:outline-none focus:border-white/40 transition-colors text-left placeholder:text-gray-400"
-              />
-              {error && (
+                className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 font-mono text-sm focus:outline-none focus:border-white/50 focus:ring-1 focus:ring-white/50 focus:bg-white/10 transition-all duration-300 text-left placeholder:text-gray-600 shadow-inner"
+                />
+                {error && (
                 <p className="text-red-400 text-xs font-mono text-center mt-3">{error}</p>
-              )}
-            </div>
-            <button 
-              onClick={handleReveal}
-              className="w-full bg-white text-black font-bold py-5 rounded-xl hover:bg-gray-200 transition-all duration-150 ease-out active:scale-[0.97] text-sm tracking-widest uppercase shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.2)]"
-            >
-              Reveal My Aura
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+                )}
+                </div>
+                <div className="relative group">
+                <div className="absolute -inset-1 bg-white/20 rounded-2xl blur-lg group-hover:bg-white/30 transition-all duration-500 opacity-50 group-hover:opacity-100 animate-pulse" style={{ animationDuration: '3s' }} />
+                <button 
+                onClick={handleReveal}
+                className="relative w-full bg-white text-black font-bold py-6 rounded-2xl hover:bg-gray-100 transition-all duration-300 ease-out active:scale-[0.98] text-sm tracking-widest uppercase shadow-xl"
+                >
+                Reveal My Aura
+                </button>
+                </div>
+                </div>
+                )}
+                </motion.div>
+                </div>
+                );
 }
