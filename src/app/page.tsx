@@ -45,8 +45,8 @@ export default function Home() {
     <div className="min-h-screen bg-[#05070B] text-white flex flex-col items-center justify-center p-4">
       <div className="max-w-md w-full space-y-12">
         <div className="text-center">
-          <h1 className="text-4xl md:text-5xl font-serif mb-4 tracking-tight">On-Chain Aura</h1>
-          <p className="text-gray-400 font-mono text-sm tracking-wide">What kind of on-chain being are you?</p>
+          <h1 className="text-4xl md:text-5xl font-sans mb-3 tracking-tight">On-Chain Aura</h1>
+          <p className="text-gray-300 font-mono text-sm tracking-wide">What kind of on-chain being are you?</p>
         </div>
         
         {loading ? (
@@ -76,7 +76,7 @@ export default function Home() {
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleReveal()}
-                className="w-full bg-white/5 border border-white/10 rounded-xl p-5 font-mono text-sm focus:outline-none focus:border-white/40 transition-colors text-center"
+                className="w-full bg-white/5 border border-white/10 rounded-xl p-5 font-mono text-sm focus:outline-none focus:border-white/40 transition-colors text-left placeholder:text-gray-400"
               />
               {error && (
                 <p className="text-red-400 text-xs font-mono text-center mt-3">{error}</p>
@@ -84,7 +84,7 @@ export default function Home() {
             </div>
             <button 
               onClick={handleReveal}
-              className="w-full bg-white text-black font-bold py-5 rounded-xl hover:bg-gray-200 transition-colors text-sm tracking-widest uppercase shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.2)]"
+              className="w-full bg-white text-black font-bold py-5 rounded-xl hover:bg-gray-200 transition-all duration-150 ease-out active:scale-[0.97] text-sm tracking-widest uppercase shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.2)]"
             >
               Reveal My Aura
             </button>
