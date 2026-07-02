@@ -44,10 +44,12 @@ export default function Home() {
  
     return (
     <div className="min-h-screen bg-[#05070B] text-white flex flex-col items-center justify-center p-4 relative overflow-hidden">
-        
+         
       {/* 3D Center Object */}
-      <OrbScene />
-  
+      <div className="absolute top-0 left-0 w-full h-[60vh] lg:h-screen pointer-events-none z-0">
+        <OrbScene />
+      </div>
+   
       {/* Left Stats Layer */}
       <div className="hidden lg:flex absolute left-12 top-1/2 -translate-y-1/2 flex-col space-y-12 z-10 pointer-events-none">
         <div>
@@ -82,10 +84,10 @@ export default function Home() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-md w-full space-y-16 relative z-10 mt-32 lg:mt-64"
+        className="max-w-md w-full space-y-12 relative z-10 mt-[40vh] lg:mt-[30vh]"
       >
         <div className="text-center space-y-4">
-          <h1 className="text-6xl md:text-7xl font-sans font-bold tracking-tighter leading-none bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50 pb-2">
+          <h1 className="text-5xl md:text-6xl font-sans font-bold tracking-tighter leading-none bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50 pb-2">
             On-Chain<br />Aura
           </h1>
           <p className="text-gray-400 font-mono text-xs md:text-sm tracking-widest uppercase">What kind of on-chain being are you?</p>

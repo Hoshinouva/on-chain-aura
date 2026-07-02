@@ -7,7 +7,7 @@ import * as THREE from 'three';
 export default function OrbScene() {
   return (
     <div className="absolute inset-0 z-0 pointer-events-none">
-      <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 5], fov: 45 }}>
+      <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 6], fov: 40 }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 10]} intensity={1} />
         <pointLight position={[-10, -10, -10]} color="#4444ff" intensity={2} />
